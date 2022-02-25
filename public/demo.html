@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta age="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /** vue2 实现响应式
+     * 每个属性要实现响应式，都要写get , set
+     * 删除属性时需要设置configurable 为true
+     * */
+    let person = {
+      name: 'zs',
+      age: 18
+    }
+    let p = {};
+
+    Object.defineProperty(p, 'name', {
+      configurable: true,
+      // 读取了p的属性
+      get() {
+        return person.name
+      },
+      set(value) {
+        console.log('名字被修改了');
+        person.name = value
+      }
+    })
+    Object.defineProperty(p, 'age', {
+      // 读取了p的属性
+      get() {
+        return person.age
+      },
+      set(value) {
+        console.log('年龄被修改了');
+        person.age = value
+      }
+    })
+
+    // vue3 实现响应式
+    const p1 = new Proxy(person, {
+      // 读取属性
+      get(target, propName) {
+        console.log(`获取了属性${propName}的值`);
+        // return propName;
+        return Reflect.get(target, propName);
+      },
+      // 修改新增属性
+      set(target, propName, value) {
+        console.log(`修改了属性${propName}的值`);
+        // target[propName] = value;
+        Reflect.set(target, propName, value);
+      },
+      // 删除属性
+      deleteProperty(target, propName) {
+        console.log(`删除了属性${propName}的值`);
+        // return delete target[propName];
+        return Reflect.deleteProperty(target, propName);
+      }
+    })
+
+  </script>
+  
+</body>
+</html>
