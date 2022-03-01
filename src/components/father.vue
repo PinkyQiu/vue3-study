@@ -1,21 +1,10 @@
 <template>
-  <div class="father">
-    我是父组件, {{ name }} --- {{ price }}
-    <Suspense>
-      <template v-slot:default>
-        <son></son>
-      </template>
-      <template v-slot:fallback>
-        <h2>加载中。。。</h2>
-      </template>
-    </Suspense>
-  </div>
+  <div class="father">我是父组件, {{ name }} --- {{ price }}<son></son></div>
 </template>
 
 <script>
-import { provide, reactive, defineAsyncComponent } from "vue";
-const son = defineAsyncComponent(() => import("./components/son.vue"));
-// import son from "./components/son.vue";
+import { provide, reactive } from "vue";
+import son from "./components/son.vue";
 export default {
   name: "App",
   components: {

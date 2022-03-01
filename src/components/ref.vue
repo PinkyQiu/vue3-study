@@ -1,30 +1,28 @@
 <template>
   <h2>用户信息：</h2>
-  <div>姓名：{{name}}</div>
-  <div>年龄：{{age}}</div>
-  <div>工作类型：{{job.type}}</div>
-  <div>薪资： {{job.salary}}</div>
+  <div>姓名：{{ name }}</div>
+  <div>年龄：{{ age }}</div>
+  <div>工作类型：{{ job.type }}</div>
+  <div>薪资： {{ job.salary }}</div>
   <br />
   <br />
   <button @click="sayHello">按钮</button>
   <br />
   <br />
   <button @click="changeInfo">更新用户信息</button>
-  
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 export default {
-  name: 'App',
-  components: {
-  },
+  name: "App",
+  components: {},
   setup() {
-    let name = ref('zs');
+    let name = ref("zs");
     let age = ref(18);
     const job = ref({
-      type: '前端工程师',
-      salary: '20k',
+      type: "前端工程师",
+      salary: "20k",
     });
 
     function sayHello() {
@@ -32,11 +30,11 @@ export default {
     }
 
     function changeInfo() {
-      name.value = 'ls';
+      name.value = "ls";
       age.value = 20;
 
-      job.value.type = 'ui设计师';
-      job.value.salary = '22k';
+      job.value.type = "ui设计师";
+      job.value.salary = "22k";
     }
 
     return {
@@ -44,10 +42,10 @@ export default {
       age,
       job,
       sayHello,
-      changeInfo
-    }
-  }
-}
+      changeInfo,
+    };
+  },
+};
 </script>
 
 <style>
